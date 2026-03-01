@@ -2,13 +2,7 @@ from app import createApp, database
 from flask_cors import CORS
 
 app = createApp()
-
-CORS(
-    app,
-    origins=["https://shop-tan-ten.vercel.app"],
-    supports_credentials=True
-)
-
+CORS(app, supports_credentials=True, origins=["https://shop-tan-ten.vercel.app"])
 with app.app_context():
     database.create_all()
 

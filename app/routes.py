@@ -6,7 +6,6 @@ from flask_jwt_extended import (
     create_access_token,
     create_refresh_token,
     jwt_required,
-    unset_jwt_cookies
 )
 from datetime import datetime
 from .extensions import database
@@ -15,6 +14,11 @@ import string, random
 
 main_bp = Blueprint("main_bp", __name__)
 
+def to_int(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 def current_user():
     user_id = get_jwt_identity()
     return Users.query.filter_by(user_code=user_id).first()
@@ -107,8 +111,8 @@ def addProduct():
         user_code = user.user_code,
         name=name,
         brand=brand,
-        ram=data.get("ram"),
-        storage=data.get("storage"),
+        ram=to_int(data.get("ram")),
+        storage=to_int(data.get("storage")),
         category=category,
         status="active"
     )
