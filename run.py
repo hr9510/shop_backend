@@ -4,7 +4,7 @@ from flask_cors import CORS
 app = createApp()
 CORS(app,
      supports_credentials=True,
-     origins=["https://shop-beta-amber.vercel.app/"])
+     origins=["https://shop-beta-amber.vercel.app"])
 with app.app_context():
     database.create_all()
 
