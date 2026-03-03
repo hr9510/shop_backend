@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-print("Database URL:", os.getenv("DATABASE_URL"))
 
 def createApp():
     app = Flask(__name__)
