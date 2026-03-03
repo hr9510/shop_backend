@@ -486,7 +486,7 @@ def deletefullDatas():
 
 @main_bp.route("/ping")
 def ping():
-    return jsonify({"message": "pong"}), 200
+    return jsonify({"message": "alive"}), 200
 
 @main_bp.route("/refresh", methods=["GET"])
 @jwt_required(refresh=True)
