@@ -1,3 +1,5 @@
+
+
 from flask import jsonify, request, Blueprint, make_response
 from flask_jwt_extended import (
     set_access_cookies,
@@ -5,7 +7,7 @@ from flask_jwt_extended import (
     get_jwt_identity,
     create_access_token,
     create_refresh_token,
-    jwt_required,
+    jwt_required
 )
 from datetime import datetime
 from .extensions import database
@@ -84,7 +86,7 @@ def loginUser():
     access_token = create_access_token(identity=str(user.user_code), additional_claims={"user_id": user.id})
     refresh_token = create_refresh_token(identity=str(user.user_code), additional_claims={"user_id": user.id})
 
-    response = jsonify({"message": "Login Successfully", "id" : user.user_code})
+    response = make_response(jsonify({"login": True}))
     set_access_cookies(response, access_token)
     set_refresh_cookies(response, refresh_token)
 
@@ -452,7 +454,6 @@ def deleteOtherManages():
     database.session.commit()
 
     return jsonify({"message": "Deleted"}), 200
-
 @main_bp.route("/get_account", methods=["GET"])
 @jwt_required()
 def getAccount():
@@ -465,6 +466,27 @@ def getAccount():
         "user_email": user.user_email,
         "user_code": user.user_code
     })
+
+@main_bp.route("/delete_full_datas", methods=["GET"])
+@jwt_required()
+def deletefullDatas():
+    data = request.get_json()
+    item = Users.query.all()
+    item1 = Products.query.all()
+    item2 = Purchase.query.all()
+    item3 = Sales.query.all()
+    item4 = OtherManages.query.all()
+    database.session.delete(item)
+    database.session.delete(item1)
+    database.session.delete(item2)
+    database.session.delete(item3)
+    database.session.delete(item4)
+    database.session.commit()
+    return jsonify({"message" : "Deleted"})
+
+@main_bp.route("/ping")
+def ping():
+    return jsonify({"message": "pong"}), 200
 
 @main_bp.route("/refresh", methods=["GET"])
 @jwt_required(refresh=True)
