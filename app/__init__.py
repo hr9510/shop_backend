@@ -23,7 +23,7 @@ def createApp():
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
     app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=30)
 
-    app.config["JWT_COOKIE_SECURE"] = False
+    app.config["JWT_COOKIE_SECURE"] = True
     app.config["JWT_COOKIE_SAMESITE"] = "None"
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
 
