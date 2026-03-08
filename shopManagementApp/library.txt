@@ -1,0 +1,36 @@
+INSTALL flask
+
+1 WAY:-
+pip install virtualenv
+virtualenv env
+Set-ExecutionPolicy Unrestricted set this as unrestricted if error comes
+.\env\Scripts\Activate.ps1
+pip install flask 
+python .\app.py
+
+{if __name__ == '__main__':
+    app.run(debug=True)} you have to use this
+
+2 WAY:-
+python -m venv venv
+.\venv\Scripts\activate
+pip install flask
+flask --version
+python .\app.py
+{if __name__ == '__main__':
+    app.run(debug=True)} you have to use this
+
+INSTALL FLASK-WTF
+pip install flask-wtf
+ pip show flask-wtf
+ pip install python-dotenv
+
+
+ INSTALL ALEMBIC
+ alembic init alembic
+sqlalchemy.url = sqlite:///mydb.sqlite3 in alembic.ini
+alembic revision --autogenerate -m "Added status column to tasks"
+alembic upgrade head
+
+for qrcode
+npm install qrcode.react html2canvas
