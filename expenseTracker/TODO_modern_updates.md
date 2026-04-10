@@ -1,0 +1,1 @@
+# expenseTracker Modern Updates Plan\n\n## 1. Routes (@route → @get/@post)\n- accounts_routes.py\n- auth_routes.py\n- expenses_routes.py\n\n## 2. Marshmallow → Pydantic v2\n- app/schema/* → Pydantic BaseModel\n\n## 3. Pytest Setup\n- tests/ folder + conftest.py\n\n## 4. requirements.txt\nFlask==3.1.3\npydantic[email-validator]\npytest\n\n**Ready for implementation!**
